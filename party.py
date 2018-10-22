@@ -7,10 +7,8 @@ from trytond.model import fields
 __all__ = ['Party', 'PartyIdentifier']
 
 
-class Party:
+class Party(metaclass=PoolMeta):
     __name__ = 'party.party'
-    __metaclass__ = PoolMeta
-
     accise_identifier = fields.Function(fields.Many2One(
             'party.identifier', 'Accise Identifier'),
         'get_accise_identifier', searcher='search_accise_identifier')
@@ -42,9 +40,8 @@ class Party:
         return domain
 
 
-class PartyIdentifier:
+class PartyIdentifier(metaclass=PoolMeta):
     __name__ = 'party.identifier'
-    __metaclass__ = PoolMeta
 
     @classmethod
     def get_types(cls):
